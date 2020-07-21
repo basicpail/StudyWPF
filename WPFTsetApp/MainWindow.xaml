@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFTsetApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="TestWindow" Height="450" Width="800">
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="120">
+        <TextBlock TextWrapping="Wrap" Text="Text Block" Height ="30"
+                   Margin="10,25,5,15" Width="100"/>
+        <TextBox x:Name="TxtNames" Height="35" TextWrapping="Wrap" Text="Input Something"
+                 Margin="10"/>
+        <ProgressBar x:Name="PgbTest" Height="30" Margin="10"
+                     Minimum="0" Maximum="100" Value="80"/>
+        <Slider Height="40" Margin="10"/>
+        <PasswordBox PasswordChar="*" Password="test" Height="30" Margin="10"/>
+
+    </StackPanel>
 </Window>

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPFTsetApp
+namespace BikeShopApp
 {
     /// <summary>
     /// MainWindow.xaml에 대한 상호 작용 논리
@@ -23,11 +23,6 @@ namespace WPFTsetApp
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Hello WPF");
         }
     }
 }

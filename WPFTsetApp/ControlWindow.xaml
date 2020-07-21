@@ -1,0 +1,40 @@
+﻿<Window x:Class="WPFTsetApp.ControlWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFTsetApp"
+        mc:Ignorable="d"
+        Title="ControlWindow" Height="450" Width="800">
+    <Grid>
+        <!--<Border Background="Azure">
+            <Viewbox/>
+        </Border>
+
+        <ToggleButton Content="Toggle Button" Width ="158" Margin="610,30,24,333" HorizontalAlignment="Center"></ToggleButton>
+        <CheckBox Content="CheckBox" Width="86" HorizontalAlignment="Left" Margin="67,108,0,284"/>
+        <RadioButton Content="RadioButton" HorizontalContentAlignment="Left" Margin="67,140,629,255" GroupName="1"/>
+        <RadioButton Content="RadioButton" HorizontalContentAlignment="Left" Margin="67,169,629,226" GroupName="1"/>
+        <RadioButton Content="RadioButton" HorizontalContentAlignment="Left" Margin="67,196,629,199" GroupName="2"/>
+        <RadioButton Content="RadioButton" HorizontalContentAlignment="Left" Margin="67,225,629,170" GroupName="2"/>
+        <RadioButton Content="RadioButton" HorizontalContentAlignment="Left" Margin="67,254,629,141" GroupName="3"/>
+        <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="273" Height="156" Margin="249,48,0,0">
+            <MediaElement Source="Cat.wmv" Height="146" Width="270"/>
+        </Button>
+        <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="273" Height="156" Margin="249,225,0,0">
+            <MediaElement Source="Cat.jpg" Height="146" Width="230" LoadedBehavior="Play"/>
+        </Button>
+        <ScrollViewer HorizontalAlignment="Left" Height="286" Margin="570,108,0,0"
+                      VerticalAlignment="Top" Width="198"
+                      HorizontalScrollBarVisibility="Visible" RenderTransformOrigin="-0.566,0.734">
+            <MediaElement Source="Cat.wmv" Stretch="None" Height="310" Width="224" />
+
+        </ScrollViewer>-->
+        <Grid Height="100" Width="100" Background="LightBlue">
+            <Viewbox Stretch="Fill">
+                <Button Content="Click Here" />
+            </Viewbox>
+        </Grid>
+
+    </Grid>
+</Window>
