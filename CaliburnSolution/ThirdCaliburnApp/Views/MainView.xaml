@@ -10,6 +10,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="1000"
         Background="{DynamicResource MaterialDesignPaper}">
+    <mah:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <iconpack:PackIconTypicons Kind="Group" Foreground="Wheat" Margin="5,7,0,0"/>
+        </DataTemplate>
+    </mah:MetroWindow.IconTemplate>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -29,19 +34,38 @@
                    FontWeight="Bold"
                    Text="List of Employees"/>
                 <!--end of Grid Title-->
-                <DataGrid x:Name="Employees"
+            <DataGrid x:Name="Employees"
                   Grid.Row="1"
                   Margin="5"
-                  IsReadOnly="True" AutoGenerateColumns="True"
-                  SelectedItem="{Binding SelectedEmployee}"/>
+                  IsReadOnly="True" AutoGenerateColumns="False"
+                  SelectedItem="{Binding SelectedEmployee}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="아이디" Width="0.8*" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="사원명" Width="1.5*" Binding="{Binding EmpName}"/>
+                    <DataGridTextColumn Header="급여" Width="*" Binding="{Binding Salary}"/>
+                    <DataGridTextColumn Header="회사명" Width="*" Binding="{Binding DeptName}"/>
+                    <DataGridTextColumn Header="주소" Width="1.3*" Binding="{Binding Destination}"/>
+                </DataGrid.Columns>
+            </DataGrid>
 
-                <Button x:Name="GetEmployees"
+
+            <Button x:Name="GetEmployees"
                 Grid.Row="2"
                 Width="300" Height="50"
                 materialDesign:ButtonAssist.CornerRadius="10"
                 Style="{StaticResource MaterialDesignRaisedAccentButton}"
                 ToolTip="직원리스트 가져오기"
-                Content="Get Lists"/>
+                Content="Get Lists">
+                <Button.ContentTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconpack:PackIconTypicons Kind="ArrowRepeatOutline" VerticalAlignment="Center"/>
+                            <Label Content="Get Lists"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </Button.ContentTemplate>
+            </Button>
+
         </Grid>
         <Grid Grid.Column="1" Margin="50">
             <Grid.RowDefinitions>
@@ -59,19 +83,19 @@
 
             <TextBlock  Grid.Row="0" Grid.Column="0"
                        Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                       Text="Id"/>
+                       Text="아이디"/>
             <TextBlock  Grid.Row="1" Grid.Column="0"
                        Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                       Text="EmpName"/>
+                       Text="사원명"/>
             <TextBlock  Grid.Row="2" Grid.Column="0"
                        Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                       Text="Salary"/>
+                       Text="급여"/>
             <TextBlock  Grid.Row="3" Grid.Column="0"
                        Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                       Text="DeptName"/>
+                       Text="회사명"/>
             <TextBlock Grid.Row="4" Grid.Column="0"
                        Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                       Text="Destination"/>
+                       Text="주소"/>
 
             <TextBox x:Name ="Id" Grid.Row="0" Grid.Column="1"
                      materialDesign:HintAssist.Hint="Id (입력불가)"
@@ -103,20 +127,58 @@
                         HorizontalAlignment="Center"
                         Orientation="Horizontal">
 
-                <Button x:Name="SaveEmployee" 
-                Width="100" Height="50"
-                materialDesign:ButtonAssist.CornerRadius="10"
-                Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                ToolTip="저장"
-                Content="Save"/>
-                
                 <Button x:Name="NewEmployee"
                 Width="100" Height="50"
                 materialDesign:ButtonAssist.CornerRadius="10"
                 Style="{StaticResource MaterialDesignRaisedButton}"
                 ToolTip="신규"
-                Content="New"/>
-                
+                Content="New">
+                    <Button.ContentTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <iconpack:PackIconTypicons Kind="Tick" VerticalAlignment="Center"/>
+                                <Label Content="New"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </Button.ContentTemplate>
+                </Button>
+
+                <Button x:Name="SaveEmployee" 
+                Width="100" Height="50"
+                materialDesign:ButtonAssist.CornerRadius="10"
+                Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                ToolTip="저장"
+                Content="Save">
+                    <Button.ContentTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <iconpack:PackIconTypicons Kind="TickOutline" VerticalAlignment="Center"/>
+                                <Label Content="Save"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </Button.ContentTemplate>
+                </Button>
+
+               
+
+                <Button x:Name="DeleteEmployee" 
+                Width="100" Height="50"
+                materialDesign:ButtonAssist.CornerRadius="10"
+                Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                ToolTip="삭제"
+                Content="Delete">
+                    <Button.ContentTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <iconpack:PackIconTypicons Kind="TickOutline"
+                                                           Foreground="Chocolate" VerticalAlignment="Center"/>
+                                <Label Content="Delete" Foreground="Chocolate"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </Button.ContentTemplate>
+                </Button>
+
+
             </StackPanel>
 
         </Grid>

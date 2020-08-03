@@ -15,8 +15,6 @@ namespace ThirdCaliburnApp.ViewModels
 {
     class MainViewModel : Conductor<object>, IHaveDisplayName
     {
-        //EmployeesModel employeesModel;
-
         int id;
 
         public int Id
@@ -26,6 +24,7 @@ namespace ThirdCaliburnApp.ViewModels
             {
                 id = value;
                 NotifyOfPropertyChange(() => Id);
+                NotifyOfPropertyChange(() => CanDeleteEmployee);
             }
         }
         string empName;
@@ -37,7 +36,9 @@ namespace ThirdCaliburnApp.ViewModels
             {
                 empName = value;
                 NotifyOfPropertyChange(() => EmpName);
-            } 
+                NotifyOfPropertyChange(() => CanSaveEmployee);
+
+            }
         }
         decimal salary;
 
@@ -48,7 +49,9 @@ namespace ThirdCaliburnApp.ViewModels
             {
                 salary = value;
                 NotifyOfPropertyChange(() => Salary);
-            } 
+                NotifyOfPropertyChange(() => CanSaveEmployee);
+
+            }
         }
         string deptName;
 
@@ -59,8 +62,10 @@ namespace ThirdCaliburnApp.ViewModels
             {
                 deptName = value;
                 NotifyOfPropertyChange(() => DeptName);
+                NotifyOfPropertyChange(() => CanSaveEmployee);
+
             }
-                }
+        }
         string destination;
 
         public string Destination 
@@ -70,8 +75,10 @@ namespace ThirdCaliburnApp.ViewModels
             {
                 destination = value;
                 NotifyOfPropertyChange(() => Destination);
+                NotifyOfPropertyChange(() => CanSaveEmployee);
+
             }
-         }
+        }
 
         //전체 Employees리스트
         BindableCollection<EmployeesModel> employees;
@@ -152,6 +159,16 @@ namespace ThirdCaliburnApp.ViewModels
         //            && (string.IsNullOrEmpty(Destination)));
         //    }
         //}
+        public bool CanSaveEmployee
+        {
+            get
+            {
+                return !(string.IsNullOrEmpty(EmpName) ||
+                    string.IsNullOrEmpty(DeptName) ||
+                    string.IsNullOrEmpty(Destination) ||
+                    Salary == 0);
+            }
+        }
 
         public void SaveEmployee()
         {
@@ -160,7 +177,15 @@ namespace ThirdCaliburnApp.ViewModels
             using (MySqlConnection conn = new MySqlConnection(Commons.CONNSTRING))
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand(EmployeesTbl.UPDATE_EMPLOYEE, conn);
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = conn;
+                if (Id == 0) //insert
+                {
+                    cmd.CommandText =EmployeesTbl.INSERT_EMPLOYEE;
+                }
+                else //Update
+                    cmd.CommandText = EmployeesTbl.UPDATE_EMPLOYEE;
+
                 MySqlParameter paramEmpName = new MySqlParameter("@EmpName", MySqlDbType.VarChar, 45);
                 paramEmpName.Value = EmpName;
                 cmd.Parameters.Add(paramEmpName);
@@ -177,6 +202,41 @@ namespace ThirdCaliburnApp.ViewModels
                 paramDestination.Value = Destination;
                 cmd.Parameters.Add(paramDestination);
 
+                if(Id != 0)
+                {
+                    MySqlParameter paramId = new MySqlParameter("@id", MySqlDbType.Int32);
+                    paramId.Value = Id;
+                    cmd.Parameters.Add(paramId);
+                }
+                resultRow = cmd.ExecuteNonQuery();
+            }
+
+
+            if(resultRow>0)
+            {
+                MessageBox.Show("저장했습니다.");
+                NewEmployee();
+                GetEmployees();
+            }
+        }
+
+        public bool CanDeleteEmployee
+        {
+            get => !(Id == 0);
+        }
+
+        public void DeleteEmployee()
+        {
+            int resultRow = 0;
+
+            using (MySqlConnection conn = new MySqlConnection(Commons.CONNSTRING))
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = EmployeesTbl.DELETE_EMPLOYEE;
+               
+
                 MySqlParameter paramId = new MySqlParameter("@id", MySqlDbType.Int32);
                 paramId.Value = Id;
                 cmd.Parameters.Add(paramId);
@@ -184,10 +244,10 @@ namespace ThirdCaliburnApp.ViewModels
                 resultRow = cmd.ExecuteNonQuery();
             }
 
-            if(resultRow>0)
+            if(resultRow >0)
             {
-                MessageBox.Show("저장했습니다.");
-
+                MessageBox.Show("삭제했습니다");
+                NewEmployee();
                 GetEmployees();
             }
         }

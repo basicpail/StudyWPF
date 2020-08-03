@@ -15,8 +15,21 @@
                                                 " DeptName, " +
                                                 " Destination " +
                                                 " FROM employeestbl ";
+
         internal static string INSERT_EMPLOYEE =
-            " ";
+                                                " INSERT INTO employeestbl " +
+                                                "( " +
+                                                " EmpName, " +
+                                                " Salary, " +
+                                                "DeptName, " +
+                                                "Destination " +
+                                                " )VALUES( " +
+                                                " @EmpName, " +
+                                                " @Salary, " +
+                                                " @DeptName, " +
+                                                " @Destination " +
+                                                " ) ";
+
         internal static string UPDATE_EMPLOYEE = " UPDATE employeestbl " +
                                                  " SET " +
                                                  "      EmpName = @EmpName, " +
@@ -24,5 +37,8 @@
                                                  "      DeptName = @DeptName, " +
                                                  "      Destination = @Destination " +
                                                  " WHERE id = @id ";
+        internal static string DELETE_EMPLOYEE = " DELETE FROM employeestbl " +
+                                                 " WHERE id = @id ";
     }
+
 }
