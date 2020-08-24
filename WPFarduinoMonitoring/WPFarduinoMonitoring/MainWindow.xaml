@@ -1,0 +1,81 @@
+﻿<mah:MetroWindow  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="WPFPrac.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:d3="clr-namespace:InteractiveDataDisplay.WPF;assembly=InteractiveDataDisplay.WPF"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFPrac"
+        mc:Ignorable="d"
+        Title="Arduino PhotoRegister" Height="700" Width="650">
+
+    <Grid Grid.Column="0" Margin="10" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.35*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="3.5*"/>
+        </Grid.RowDefinitions>
+
+
+        <DockPanel Grid.ColumnSpan="2">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="파일">
+                    <MenuItem Header="열기"/>
+                    <MenuItem Header="저장"/>
+                    <MenuItem x:Name="MenuSubItemExit" Header="끝내기" Click="MenuSubItemExit_Click"/>
+                </MenuItem>
+                <MenuItem Header="시뮬레이션"  >
+                    <MenuItem x:Name="MenuSubItemStart" Header="시작" HorizontalAlignment="Center" Click="MenuSubItemStart_Click" />
+                    <MenuItem x:Name="MenuSubItemStop" Header="중지" Click="MenuSubItemStop_Click"/>
+                </MenuItem>
+                <MenuItem Header="도움말">
+                    <MenuItem Header="정보"/>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <TextBlock x:Name="LblConnectionTime" Grid.Row="1" Grid.Column="0" Width="250"  Text="연결시간:" FontSize="12"
+                   VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"/>
+        <TextBox x:Name="TxtSensorCount" Grid.Row="1" Grid.Column="0" Width="100" Height="30" VerticalAlignment="Center" HorizontalAlignment="Right"
+                 Margin="5" Background="LightGray"/>
+        <GroupBox Header="포트" FontSize="14"  FontStyle="Normal" 
+                  Grid.Row="1" Grid.RowSpan="3" Grid.Column="1"
+                  Background="Beige" BorderThickness="2" BorderBrush="Black" Margin="5">
+            <StackPanel>
+                <ComboBox x:Name="CboSerialPort" Height ="25" Margin="10" SelectionChanged="CboSerialPort_SelectionChanged">
+                </ComboBox>
+                <Button x:Name="BtnConnect" Height="35" Margin="10" Content="Connect" FontSize="14" Click="BtnConnect_Click" />
+                <Button x:Name="BtnDisconnect" Height ="35" Margin="10" Content="Disconnect" FontSize="14" Click="BtnDisconnect_Click"/>
+                <Button x:Name="BtnPortValue" Height ="60" Margin="10" Content="Port" FontSize="14"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="포토레지스터" FontSize="12" Grid.Row="2" Grid.Column="0" Margin="5">
+            <StackPanel>
+                <ProgressBar x:Name="PgbPhotoRegistor" Height="35" Margin="10" VerticalAlignment="Center"/>
+                <TextBlock x:Name="LblPhotoRegistor" Height="35" Margin="10" Text="0" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </GroupBox>
+        <RichTextBox x:Name="RtbLog" Grid.Row="3" Grid.Column="0" Background="LightGray" Margin="5"/>
+
+        <d3:Chart x:Name="ChtSensorValues" Grid.Row ="4" Margin="5" BottomTitle="Time" LeftTitle="Photo Value" Background="White"  Grid.ColumnSpan="2">
+            <d3:LineGraph x:Name="linegraph" Description="photo Registor value" IsAutoFitEnabled="False"
+                          Stroke="Red" StrokeThickness="2" >
+            </d3:LineGraph>
+        </d3:Chart>
+
+
+
+
+
+
+
+
+
+
+    </Grid>
+</mah:MetroWindow>
