@@ -7,13 +7,13 @@
         xmlns:local="clr-namespace:WPFPrac"
         mc:Ignorable="d"
         Title="Arduino PhotoRegister" Height="700" Width="650">
-
+    
     <Grid Grid.Column="0" Margin="10" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.5*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="0.35*"/>
             <RowDefinition Height="0.5*"/>
@@ -21,8 +21,8 @@
             <RowDefinition Height="1.5*"/>
             <RowDefinition Height="3.5*"/>
         </Grid.RowDefinitions>
-
-
+        
+        
         <DockPanel Grid.ColumnSpan="2">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="파일">

@@ -81,7 +81,7 @@ namespace WPFPrac
                 photoDatas.Add(data);
                 InsertDataToDB(data);
 
-                TxtSensorCount.Text = photoDatas.Count.ToString() + " sec";
+                TxtSensorCount.Text = photoDatas.Count.ToString()+" sec";
                 PgbPhotoRegistor.Value = v;
                 LblPhotoRegistor.Text = v.ToString();
 
@@ -92,13 +92,13 @@ namespace WPFPrac
 
                 x.Add(t);
                 y.Add(v);
-
-                if (x.Count == 8)
+               
+                if(x.Count == 8)
                 {
                     x.RemoveAt(0);
                     y.RemoveAt(0);
                 }
-
+               
                 linegraph.Plot(x, y);
 
                 if (IsSimulation == false)
@@ -116,7 +116,7 @@ namespace WPFPrac
 
         private void InsertDataToDB(SensorData data)
         {
-            string strQuery = "INSERT INTO sensordatatbl " +
+            string strQuery = "INSERT INTO sensordatatbl_2 " +
                               " (Date, Value) " +
                               " VALUES " +
                               " (@Date, @Value) ";
@@ -158,7 +158,7 @@ namespace WPFPrac
                 timer.Tick += Timer_Tick2;
                 timer.Start();
             }
-
+            
         }
 
 
@@ -187,7 +187,7 @@ namespace WPFPrac
         private void Timer_Tick(object sender, EventArgs e)
         {
             t++;
-            ushort value = (ushort)rand.Next(1, 1024);
+            ushort value = (ushort)rand.Next(20, 21);
             DisplayValue(value.ToString());
         }
 
@@ -197,7 +197,7 @@ namespace WPFPrac
         }
 
         private void MenuSubItemStop_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
+        { 
             //IsSimulation = false;
             timer.Stop();
         }

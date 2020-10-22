@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WPFarduinoMonitoring.Properties
+namespace WPFPrac.Properties
 {
 
 
